@@ -94,5 +94,9 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Imeges\kandinsky-download-1757922906626.png" />
+    <Resource Include="Imeges\kandinsky-download-1757923240388.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
