@@ -23,6 +23,7 @@ namespace pr3
     {
         public Classes.PersonInfo Player = new Classes.PersonInfo("Student",100, 10, 1, 0, 0 ,5);
         public List<Classes.PersonInfo> Enemys = new List<Classes.PersonInfo>();
+        public Classes.PersonInfo Enemy;
         public MainWindow()
         {
             InitializeComponent();
@@ -33,6 +34,19 @@ namespace pr3
             dispatcherTimer.Tick += AttackPlayer;
             dispatcherTimer.Interval = new System.TimeSpan(0, 0, 10);
             dispatcherTimer.Start();
+            SelectEnemy();
+        }
+        public void SelectEnemy()
+        {
+            int Id = new Random().Next(0, Enemys.Count);
+            Enemy = new Classes.PersonInfo(
+                Enemys[Id].Name,
+                Enemys[Id].Health,
+                Enemys[Id].Armor,
+                Enemys[Id].Level,
+                Enemys[Id].Glasses,
+                Enemys[Id].Money,
+                Enemys[Id].Damage);
         }
         public void UserInfoPlayer()
         {
@@ -54,6 +68,9 @@ namespace pr3
         DispatcherTimer dispatcherTimer = new DispatcherTimer();
         private void AttackPlayer(object sender, System.EventArgs e)
         {
+            Player.Health -= Convert.ToInt32(Enemy.Damage * 100f / (100f - Player.Armor));
+            UserInfoPlayer();
         }
+
     }
 }
